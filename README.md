@@ -1494,37 +1494,6 @@ The entire platform can be summarized as:
 │                    ▼                   ▼                    │
 │               SLEUTH KIT          RAW CARVING               │
 │                    │                   │                    │
-│                    └─────────┬─────────┘                    │
-│                              ▼                              │
-│                         VALIDATION                           │
-│                              │                              │
-│                              ▼                              │
-│                    RECOVERY CONFIDENCE                      │
-│                              │                              │
-│                              ▼                              │
-│                         BASELINE                            │
-│                              │                              │
-│                              ▼                              │
-│                       SANITIZATION                          │
-│                              │                              │
-│                              ▼                              │
-│                    RECOVERY AGAIN                           │
-│                              │                              │
-│                              ▼                              │
-│                    BEFORE / AFTER                           │
-│                       COMPARISON                             │
-│                              │                              │
-│                              ▼                              │
-│                         VERIFY                              │
-│                              │                              │
-│                              ▼                              │
-│                    AUDIT + REPORT                           │
-│                              │                              │
-│                              ▼                              │
-│                  SANITIZATION CERTIFICATE                   │
-│                                                             │
-└─────────────────────────────────────────────────────────────┘
-```
 
 ---
 
@@ -1601,3 +1570,33 @@ The goal is to provide an **evidence-driven, measurable, and verifiable workflow
 # 📄 License
 
 This project is developed for educational, research, and **Smart India Hackathon (SIH) 2026** prototype purposes.
+=======
+# Secure Data Sanitization and File Recovery
+
+A Python 3.10+ forensic utility core for controlled file wiping, byte-image
+carving, fragmented/metadata extent reconstruction, and independent evidence
+verification.
+
+## Core use
+
+```python
+from app.sanitization import dod_5220_22_m
+from app.recovery import carve_file
+from app.algorithms.verification import verify_recovery
+
+# Explicit confirmation is required for every irreversible overwrite.
+wipe = dod_5220_22_m("evidence-copy.bin", confirm=True)
+
+artifacts = carve_file("disk-image.raw", output_dir="recovered")
+verification = verify_recovery("recovered/carved_0001_512.pdf", baseline_hash="...")
+```
+
+Available wipe methods are `zero`, `random`, `dod_5220_22_m`, `nist_clear`,
+and `nist_purge`. Passing `delete=True, nullify_metadata=True` performs the
+rename/timestamp/unlink stage after the final verification. Wipes are limited
+to existing non-symlink regular files; raw-device writes are deliberately not
+supported by this library.
+
+Each operation returns dataclasses from `app.models`, with a 0–100 score,
+verdict, and component-level evidence in `details`.
+

@@ -1,0 +1,1293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORENSIC CORE // Recover • Sanitize • Verify</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- ====================================================================
+         COLUMN 1: LEFT SIDEBAR
+         ==================================================================== -->
+    <aside class="sidebar">
+      <div class="brand-header">
+        <div class="brand-shield">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>FORENSIC CORE</h1>
+          <p>Recover • Sanitize • Verify</p>
+        </div>
+      </div>
+
+      <nav class="nav-group">
+        <a class="nav-item active" data-view="view-dashboard" id="nav-dashboard">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+            <polyline points="9 22 9 12 15 12 15 22"/>
+          </svg>
+          <span>Dashboard</span>
+        </a>
+
+        <a class="nav-item" data-view="view-evidence" id="nav-evidence">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="16" y1="13" x2="8" y2="13"/>
+            <line x1="16" y1="17" x2="8" y2="17"/>
+          </svg>
+          <span>Evidence</span>
+        </a>
+
+        <a class="nav-item" data-view="view-recovery" id="nav-recovery">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <polyline points="23 4 23 10 17 10"/>
+            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+          </svg>
+          <span>Recovery</span>
+        </a>
+
+        <a class="nav-item" data-view="view-sanitization" id="nav-sanitization">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <polyline points="3 6 5 6 21 6"/>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+          </svg>
+          <span>Sanitization</span>
+        </a>
+
+        <a class="nav-item" data-view="view-intelligence" id="nav-intelligence">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <line x1="18" y1="20" x2="18" y2="10"/>
+            <line x1="12" y1="20" x2="12" y2="4"/>
+            <line x1="6" y1="20" x2="6" y2="14"/>
+          </svg>
+          <span>Intelligence</span>
+        </a>
+
+        <a class="nav-item" data-view="view-verification" id="nav-verification">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+          <span>Verification</span>
+        </a>
+
+        <a class="nav-item" data-view="view-audit" id="nav-audit">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="10" y1="12" x2="14" y2="12"/>
+            <line x1="10" y1="16" x2="14" y2="16"/>
+          </svg>
+          <span>Audit Logs</span>
+        </a>
+
+        <a class="nav-item" data-view="view-reports" id="nav-reports">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="7 10 12 15 17 10"/>
+            <line x1="12" y1="15" x2="12" y2="3"/>
+          </svg>
+          <span>Reports</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <a class="nav-item" style="margin-bottom: 0.75rem;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+          </svg>
+          <span>Settings</span>
+        </a>
+        <div class="sih-badge">
+          <strong>SIH 2026</strong>
+          Digital Forensics & Data Sanitization
+        </div>
+      </div>
+    </aside>
+
+    <!-- ====================================================================
+         COLUMN 2: CENTER MAIN CONTENT AREA
+         ==================================================================== -->
+    <div class="main-wrapper">
+      <!-- Topbar Header -->
+      <header class="topbar">
+        <div class="search-box">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+          <input type="text" class="search-input" id="global-search-input" placeholder="Search cases, files, or operations...">
+        </div>
+
+        <div class="topbar-actions">
+          <button class="icon-btn-round" title="Notifications">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+            </svg>
+            <span class="notification-dot"></span>
+          </button>
+
+          <div class="user-profile">
+            <div class="user-avatar">AK</div>
+            <div class="user-info">
+              <div class="user-name">Atharva Kumkar</div>
+              <div class="user-role">Investigator</div>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--text-muted); margin-left: 0.25rem;">
+              <polyline points="6 9 12 15 18 9"/>
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- Scrollable Content Body -->
+      <main class="content-body">
+
+        <!-- ================================================================
+             VIEW: DASHBOARD (EXACT MATCH TO REFERENCE)
+             ================================================================ -->
+        <section class="view-section active" id="view-dashboard">
+          <!-- Welcome Banner -->
+          <div class="welcome-banner">
+            <div class="welcome-text">
+              <h2>Welcome Back, Investigator</h2>
+              <p>Monitor recovery, sanitization and verification activities</p>
+            </div>
+            <div class="welcome-controls">
+              <div class="date-time-display">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                  <line x1="16" y1="2" x2="16" y2="6"/>
+                  <line x1="8" y1="2" x2="8" y2="6"/>
+                  <line x1="3" y1="10" x2="21" y2="10"/>
+                </svg>
+                <span id="live-datetime">Mon, 08 Sep 2026<br>12:24 PM</span>
+              </div>
+              <button class="btn-new-case" id="btn-open-new-case">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <line x1="12" y1="5" x2="12" y2="19"/>
+                  <line x1="5" y1="12" x2="19" y2="12"/>
+                </svg>
+                New Case
+              </button>
+            </div>
+          </div>
+
+          <!-- 4 KPI Metrics Row -->
+          <div class="kpi-grid">
+            <!-- Card 1: Total Files Analyzed -->
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-icon-box blue">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                  </svg>
+                </div>
+                <div class="kpi-label">Total Files Analyzed</div>
+                <div class="kpi-value" id="kpi-total-files">3,456</div>
+              </div>
+              <div class="kpi-ring-wrapper">
+                <svg class="kpi-ring-svg">
+                  <circle class="kpi-ring-bg" cx="32" cy="32" r="26"/>
+                  <circle class="kpi-ring-fill blue" cx="32" cy="32" r="26" stroke-dasharray="163" stroke-dashoffset="40"/>
+                </svg>
+                <div class="kpi-ring-text">75%</div>
+              </div>
+            </div>
+
+            <!-- Card 2: Files Recovered -->
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-icon-box emerald">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="23 4 23 10 17 10"/>
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                  </svg>
+                </div>
+                <div class="kpi-label">Files Recovered</div>
+                <div class="kpi-value" id="kpi-files-recovered">1,248</div>
+              </div>
+              <div class="kpi-ring-wrapper">
+                <svg class="kpi-ring-svg">
+                  <circle class="kpi-ring-bg" cx="32" cy="32" r="26"/>
+                  <circle class="kpi-ring-fill emerald" cx="32" cy="32" r="26" stroke-dasharray="163" stroke-dashoffset="62"/>
+                </svg>
+                <div class="kpi-ring-text">62%</div>
+              </div>
+            </div>
+
+            <!-- Card 3: Files Sanitized -->
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-icon-box red">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  </svg>
+                </div>
+                <div class="kpi-label">Files Sanitized</div>
+                <div class="kpi-value" id="kpi-files-sanitized">1,102</div>
+              </div>
+              <div class="kpi-ring-wrapper">
+                <svg class="kpi-ring-svg">
+                  <circle class="kpi-ring-bg" cx="32" cy="32" r="26"/>
+                  <circle class="kpi-ring-fill red" cx="32" cy="32" r="26" stroke-dasharray="163" stroke-dashoffset="0"/>
+                </svg>
+                <div class="kpi-ring-text">100%</div>
+              </div>
+            </div>
+
+            <!-- Card 4: Verification Success -->
+            <div class="kpi-card">
+              <div>
+                <div class="kpi-icon-box purple">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    <polyline points="9 12 11 14 15 10"/>
+                  </svg>
+                </div>
+                <div class="kpi-label">Verification Success</div>
+                <div class="kpi-value" id="kpi-verification-success">98%</div>
+              </div>
+              <div class="kpi-ring-wrapper">
+                <svg class="kpi-ring-svg">
+                  <circle class="kpi-ring-bg" cx="32" cy="32" r="26"/>
+                  <circle class="kpi-ring-fill purple" cx="32" cy="32" r="26" stroke-dasharray="163" stroke-dashoffset="3"/>
+                </svg>
+                <div class="kpi-ring-text">98%</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Cases Table Card -->
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3 class="content-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <polyline points="14 2 14 8 20 8"/>
+                </svg>
+                Recent Cases
+              </h3>
+              <a class="view-all-link" id="link-view-all-cases">View All &rarr;</a>
+            </div>
+
+            <table class="cases-table">
+              <thead>
+                <tr>
+                  <th>Case Name</th>
+                  <th>Date & Time</th>
+                  <th>Type</th>
+                  <th>Status</th>
+                  <th>Files</th>
+                  <th>Team</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="cases-table-body">
+                <tr>
+                  <td>
+                    <div class="case-name-cell">
+                      <div class="case-icon blue">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                          <line x1="8" y1="21" x2="16" y2="21"/>
+                          <line x1="12" y1="17" x2="12" y2="21"/>
+                        </svg>
+                      </div>
+                      <span>Laptop_Disk_01</span>
+                    </div>
+                  </td>
+                  <td>08 Sep 2026<br><span style="color: var(--text-muted); font-size: 0.725rem;">11:24 AM</span></td>
+                  <td><span class="type-pill disk-image">Disk Image</span></td>
+                  <td>
+                    <div class="status-indicator">
+                      <span class="status-dot blue"></span>
+                      <span>Analysis</span>
+                    </div>
+                  </td>
+                  <td style="font-family: var(--font-mono);">542</td>
+                  <td>
+                    <div class="team-avatars">
+                      <div class="team-avatar">JD</div>
+                      <div class="team-avatar">RK</div>
+                      <div class="team-avatar plus">+2</div>
+                    </div>
+                  </td>
+                  <td><button class="action-dots-btn" onclick="quickSelectForCarve('data/sandbox/forensic_disk_image.raw')">&hellip;</button></td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="case-name-cell">
+                      <div class="case-icon green">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="23 4 23 10 17 10"/>
+                          <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/>
+                        </svg>
+                      </div>
+                      <span>Office_PC</span>
+                    </div>
+                  </td>
+                  <td>07 Sep 2026<br><span style="color: var(--text-muted); font-size: 0.725rem;">04:12 PM</span></td>
+                  <td><span class="type-pill recovery">Recovery</span></td>
+                  <td>
+                    <div class="status-indicator">
+                      <span class="status-dot green"></span>
+                      <span>Completed</span>
+                    </div>
+                  </td>
+                  <td style="font-family: var(--font-mono);">324</td>
+                  <td>
+                    <div class="team-avatars">
+                      <div class="team-avatar">AK</div>
+                      <div class="team-avatar">SL</div>
+                      <div class="team-avatar plus">+3</div>
+                    </div>
+                  </td>
+                  <td><button class="action-dots-btn">&hellip;</button></td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="case-name-cell">
+                      <div class="case-icon blue">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <rect x="2" y="2" width="20" height="8" rx="2" ry="2"/>
+                          <rect x="2" y="14" width="20" height="8" rx="2" ry="2"/>
+                          <line x1="6" y1="6" x2="6.01" y2="6"/>
+                          <line x1="6" y1="18" x2="6.01" y2="18"/>
+                        </svg>
+                      </div>
+                      <span>USB_Drive</span>
+                    </div>
+                  </td>
+                  <td>07 Sep 2026<br><span style="color: var(--text-muted); font-size: 0.725rem;">10:38 AM</span></td>
+                  <td><span class="type-pill sanitization">Sanitization</span></td>
+                  <td>
+                    <div class="status-indicator">
+                      <span class="status-dot green"></span>
+                      <span>Completed</span>
+                    </div>
+                  </td>
+                  <td style="font-family: var(--font-mono);">0</td>
+                  <td>
+                    <div class="team-avatars">
+                      <div class="team-avatar">TS</div>
+                      <div class="team-avatar plus">+1</div>
+                    </div>
+                  </td>
+                  <td><button class="action-dots-btn">&hellip;</button></td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="case-name-cell">
+                      <div class="case-icon purple">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                          <polyline points="2 17 12 22 22 17"/>
+                          <polyline points="2 12 12 17 22 12"/>
+                        </svg>
+                      </div>
+                      <span>Evidence_Img</span>
+                    </div>
+                  </td>
+                  <td>06 Sep 2026<br><span style="color: var(--text-muted); font-size: 0.725rem;">02:15 PM</span></td>
+                  <td><span class="type-pill analysis">Analysis</span></td>
+                  <td>
+                    <div class="status-indicator">
+                      <span class="status-dot amber"></span>
+                      <span>In Progress</span>
+                    </div>
+                  </td>
+                  <td style="font-family: var(--font-mono);">1,024</td>
+                  <td>
+                    <div class="team-avatars">
+                      <div class="team-avatar">RK</div>
+                      <div class="team-avatar">MS</div>
+                      <div class="team-avatar plus">+2</div>
+                    </div>
+                  </td>
+                  <td><button class="action-dots-btn">&hellip;</button></td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="case-name-cell">
+                      <div class="case-icon green">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+                        </svg>
+                      </div>
+                      <span>Case_Student</span>
+                    </div>
+                  </td>
+                  <td>05 Sep 2026<br><span style="color: var(--text-muted); font-size: 0.725rem;">06:41 PM</span></td>
+                  <td><span class="type-pill recovery">Recovery</span></td>
+                  <td>
+                    <div class="status-indicator">
+                      <span class="status-dot green"></span>
+                      <span>Completed</span>
+                    </div>
+                  </td>
+                  <td style="font-family: var(--font-mono);">87</td>
+                  <td>
+                    <div class="team-avatars">
+                      <div class="team-avatar">JD</div>
+                      <div class="team-avatar plus">+1</div>
+                    </div>
+                  </td>
+                  <td><button class="action-dots-btn">&hellip;</button></td>
+                </tr>
+
+                <tr>
+                  <td>
+                    <div class="case-name-cell">
+                      <div class="case-icon red">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                          <polyline points="3 6 5 6 21 6"/>
+                          <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                        </svg>
+                      </div>
+                      <span>External_HDD</span>
+                    </div>
+                  </td>
+                  <td>04 Sep 2026<br><span style="color: var(--text-muted); font-size: 0.725rem;">01:20 PM</span></td>
+                  <td><span class="type-pill sanitization">Sanitization</span></td>
+                  <td>
+                    <div class="status-indicator">
+                      <span class="status-dot red"></span>
+                      <span>Failed</span>
+                    </div>
+                  </td>
+                  <td style="font-family: var(--font-mono);">0</td>
+                  <td>
+                    <div class="team-avatars">
+                      <div class="team-avatar">AK</div>
+                      <div class="team-avatar">TS</div>
+                      <div class="team-avatar plus">+2</div>
+                    </div>
+                  </td>
+                  <td><button class="action-dots-btn">&hellip;</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Ongoing Operations Card -->
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3 class="content-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+                </svg>
+                Ongoing Operations
+              </h3>
+              <a class="view-all-link">View All &rarr;</a>
+            </div>
+
+            <div class="operations-list">
+              <!-- Op 1 -->
+              <div class="operation-item">
+                <div class="case-icon blue">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                    <line x1="8" y1="21" x2="16" y2="21"/>
+                    <line x1="12" y1="17" x2="12" y2="21"/>
+                  </svg>
+                </div>
+                <div class="operation-info">
+                  <div class="operation-title">Filesystem Analysis - carving.img</div>
+                  <div class="operation-subtitle">Scanning deleted files...</div>
+                </div>
+                <div class="operation-progress-box">
+                  <div class="operation-track">
+                    <div class="operation-fill blue" style="width: 68%;"></div>
+                  </div>
+                  <div class="operation-percent">68%</div>
+                  <div class="operation-eta">ETA 00:04:12</div>
+                </div>
+                <span class="running-pill">Running</span>
+              </div>
+
+              <!-- Op 2 -->
+              <div class="operation-item">
+                <div class="case-icon red">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                  </svg>
+                </div>
+                <div class="operation-info">
+                  <div class="operation-title">Secure Erasure - USB_Drive</div>
+                  <div class="operation-subtitle">Overwriting data (Pass 2/3)...</div>
+                </div>
+                <div class="operation-progress-box">
+                  <div class="operation-track">
+                    <div class="operation-fill emerald" style="width: 42%;"></div>
+                  </div>
+                  <div class="operation-percent">42%</div>
+                  <div class="operation-eta">ETA 00:18:31</div>
+                </div>
+                <span class="running-pill">Running</span>
+              </div>
+
+              <!-- Op 3 -->
+              <div class="operation-item">
+                <div class="case-icon purple">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="12" cy="12" r="10"/>
+                    <circle cx="12" cy="12" r="3"/>
+                  </svg>
+                </div>
+                <div class="operation-info">
+                  <div class="operation-title">File Carving - evidence.img</div>
+                  <div class="operation-subtitle">Carving file signatures...</div>
+                </div>
+                <div class="operation-progress-box">
+                  <div class="operation-track">
+                    <div class="operation-fill purple" style="width: 85%;"></div>
+                  </div>
+                  <div class="operation-percent">85%</div>
+                  <div class="operation-eta">ETA 00:02:11</div>
+                </div>
+                <span class="running-pill">Running</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             VIEW: RECOVERY & SIGNATURE CARVING
+             ================================================================ -->
+        <section class="view-section" id="view-recovery">
+          <div class="content-card" style="margin-bottom: 1.5rem;">
+            <div class="content-card-header">
+              <h3 class="content-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="4 17 10 11 4 5"/>
+                  <line x1="12" y1="19" x2="20" y2="19"/>
+                </svg>
+                Forensic Signature Carving Engine
+              </h3>
+              <button class="btn btn-secondary btn-sm" id="btn-load-sample-disk">
+                Load Demo Disk Image
+              </button>
+            </div>
+            <p style="font-size: 0.825rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+              Extract contiguous and fragmented files from disk images and raw buffers using file headers/footers (JPEG, PNG, PDF, ZIP, MP4, TXT).
+            </p>
+
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
+              <div>
+                <div class="dropzone" id="carve-dropzone">
+                  <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                    <polyline points="14 2 14 8 20 8"/>
+                    <line x1="16" y1="13" x2="8" y2="13"/>
+                    <line x1="16" y1="17" x2="8" y2="17"/>
+                  </svg>
+                  <div class="dropzone-title">Upload Raw Disk Image or Binary Buffer</div>
+                  <div class="dropzone-hint">Supports .raw, .img, .bin, or arbitrary byte captures</div>
+                  <input type="file" id="carve-file-input" style="display: none;">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="carve-target-path">Or Server File Path</label>
+                  <input type="text" class="form-input code-font" id="carve-target-path" placeholder="data/sandbox/forensic_disk_image.raw">
+                </div>
+
+                <button class="btn btn-primary" id="btn-execute-carve">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
+                  Start Signature Carving
+                </button>
+              </div>
+
+              <!-- Metadata Extents Restorer Panel -->
+              <div style="background: var(--bg-input); padding: 1.25rem; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
+                <h4 style="font-size: 0.875rem; font-weight: 600; margin-bottom: 0.5rem; color: var(--blue-light);">
+                  Extents / Cluster Restorer
+                </h4>
+                <p style="font-size: 0.725rem; color: var(--text-muted); margin-bottom: 1rem;">
+                  Reassemble non-contiguous clusters based on metadata extents.
+                </p>
+
+                <div class="form-group">
+                  <label class="form-label" for="extents-image-path">Image Path</label>
+                  <input type="text" class="form-input code-font" id="extents-image-path" placeholder="data/sandbox/forensic_disk_image.raw">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="extents-list-input">Extents: [[offset, length], ...]</label>
+                  <input type="text" class="form-input code-font" id="extents-list-input" placeholder="[[512, 1024], [4096, 512]]">
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label" for="extents-dest-name">Destination</label>
+                  <input type="text" class="form-input code-font" id="extents-dest-name" value="restored_evidence.bin">
+                </div>
+
+                <button class="btn btn-secondary btn-sm btn-full" id="btn-restore-extents">
+                  Restore From Extents
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Overall Drive Recovery Scorecard Banner -->
+          <div class="content-card" id="carving-overall-score-card" style="display: none; border-color: rgba(59, 130, 246, 0.4);">
+            <div class="content-card-header">
+              <h3 class="content-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+                </svg>
+                Overall Drive Recovery Scorecard
+              </h3>
+              <span class="type-pill recovery" id="disk-verdict-tag">ANALYZED</span>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 0;">
+              <div style="display: flex; align-items: center; gap: 1.25rem;">
+                <div class="kpi-ring-wrapper" style="width: 72px; height: 72px;">
+                  <svg class="kpi-ring-svg" style="width: 72px; height: 72px;">
+                    <circle class="kpi-ring-bg" cx="36" cy="36" r="30"/>
+                    <circle class="kpi-ring-fill blue" id="disk-score-radial" cx="36" cy="36" r="30" stroke-dasharray="188" stroke-dashoffset="50"/>
+                  </svg>
+                  <div class="kpi-ring-text" id="disk-score-text" style="font-size: 1rem;">80.0%</div>
+                </div>
+                <div>
+                  <div style="font-size: 0.725rem; color: var(--text-muted); text-transform: uppercase;">Confidence Verdict</div>
+                  <div class="type-pill recovery" id="disk-verdict-badge" style="margin-top: 0.25rem;">PROBABLE</div>
+                </div>
+              </div>
+
+              <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem 2rem; font-family: var(--font-mono); font-size: 0.8rem;">
+                <div>Total Extracted: <strong id="disk-total-val" style="color: #ffffff;">4</strong> files</div>
+                <div>Completeness: <strong id="disk-complete-val" style="color: var(--emerald);">100%</strong></div>
+                <div>Structural Validity: <strong id="disk-struct-val" style="color: var(--purple);">100%</strong></div>
+                <div>Parser Validation: <strong id="disk-parser-val" style="color: var(--blue-light);">75%</strong></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Carved Registry Table -->
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3 class="content-card-title">
+                Carved Artifacts Registry
+              </h3>
+              <span class="type-pill analysis" id="carved-count-badge">0 ARTIFACTS</span>
+            </div>
+
+            <table class="cases-table" id="carved-artifacts-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Format</th>
+                  <th>Offset</th>
+                  <th>Size</th>
+                  <th>Completeness</th>
+                  <th>Confidence Score</th>
+                  <th>Filename / Preview</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="carved-artifacts-tbody">
+                <tr>
+                  <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                    No artifacts carved yet. Run carving on a disk image or buffer.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             VIEW: SANITIZATION SUITE
+             ================================================================ -->
+        <section class="view-section" id="view-sanitization">
+          <div class="tool-grid-two-col">
+            <!-- Controls -->
+            <div class="content-card">
+              <div class="content-card-header">
+                <h3 class="content-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polyline points="3 6 5 6 21 6"/>
+                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+                  </svg>
+                  Execute File Sanitization
+                </h3>
+                <span class="type-pill sanitization">DESTRUCTIVE</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">1. Choose Sanitization Standard</label>
+                <div class="method-grid" id="sanitization-method-grid">
+                  <div class="method-card selected" data-method="dod_5220_22_m">
+                    <span class="method-card-badge">3-PASS</span>
+                    <h4 class="method-card-title">DoD 5220.22-M</h4>
+                    <p class="method-card-desc">0x00, 0xFF, CSPRNG passes.</p>
+                  </div>
+                  <div class="method-card" data-method="nist_purge">
+                    <span class="method-card-badge">PURGE</span>
+                    <h4 class="method-card-title">NIST SP 800-88</h4>
+                    <p class="method-card-desc">Cryptographic random purge.</p>
+                  </div>
+                  <div class="method-card" data-method="nist_clear">
+                    <span class="method-card-badge">CLEAR</span>
+                    <h4 class="method-card-title">NIST Clear</h4>
+                    <p class="method-card-desc">Single-pass addressable wipe.</p>
+                  </div>
+                  <div class="method-card" data-method="zero">
+                    <span class="method-card-badge">1-PASS</span>
+                    <h4 class="method-card-title">Quick Zero-Fill</h4>
+                    <p class="method-card-desc">0x00 null byte write.</p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="sanitize-target-input">2. Target File Path</label>
+                <input type="text" class="form-input code-font" id="sanitize-target-input" placeholder="e.g. data/sandbox/classified_mission_brief.txt">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label">Or Pick From Test Sandbox</label>
+                <select class="form-select code-font" id="sanitize-sandbox-picker">
+                  <option value="">-- Select a sandbox file --</option>
+                </select>
+              </div>
+
+              <div class="form-group" style="margin-top: 1rem;">
+                <label class="checkbox-group">
+                  <input type="checkbox" id="sanitize-opt-metadata" checked>
+                  <span class="checkbox-label">Nullify Metadata (Wipe timestamps & zero utime)</span>
+                </label>
+                <label class="checkbox-group">
+                  <input type="checkbox" id="sanitize-opt-delete">
+                  <span class="checkbox-label">Unlink / Delete File (Obfuscate name with random alphanumeric & remove)</span>
+                </label>
+              </div>
+
+              <button class="btn btn-danger btn-full" id="btn-trigger-sanitization" style="margin-top: 1rem;">
+                Execute Sanitization & Verification
+              </button>
+            </div>
+
+            <!-- Sanitization Audit Card -->
+            <div class="content-card">
+              <div class="content-card-header">
+                <h3 class="content-card-title">
+                  Sanitization Audit & Verdict
+                </h3>
+                <span class="type-pill analysis" id="sanitize-verdict-tag">WAITING</span>
+              </div>
+
+              <div id="sanitize-empty-state" style="text-align: center; padding: 3.5rem 1rem; color: var(--text-muted);">
+                <p>Select a file and execute sanitization to view independent verification and confidence scores.</p>
+              </div>
+
+              <div id="sanitize-result-content" style="display: none;">
+                <div style="display: flex; align-items: center; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--border-subtle);">
+                  <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div class="kpi-ring-wrapper">
+                      <svg class="kpi-ring-svg">
+                        <circle class="kpi-ring-bg" cx="32" cy="32" r="26"/>
+                        <circle class="kpi-ring-fill blue" id="sanitize-score-radial" cx="32" cy="32" r="26" stroke-dasharray="163" stroke-dashoffset="40"/>
+                      </svg>
+                      <div class="kpi-ring-text" id="sanitize-score-text">0.0%</div>
+                    </div>
+                    <div>
+                      <div style="font-size: 0.725rem; color: var(--text-muted);">CONFIDENCE VERDICT</div>
+                      <div class="type-pill recovery" id="sanitize-verdict-badge">CONFIRMED</div>
+                    </div>
+                  </div>
+                  <div style="font-family: var(--font-mono); font-size: 0.8rem; text-align: right;">
+                    <div>Overwritten: <strong id="sanitize-bytes-val" style="color: #ffffff;">0</strong></div>
+                    <div>Entropy: <strong id="sanitize-entropy-val" style="color: var(--purple);">0.00</strong></div>
+                    <div>Sanitized: <strong id="sanitize-state-val" style="color: var(--emerald);">PASSED</strong></div>
+                  </div>
+                </div>
+
+                <div style="margin-top: 1.25rem;">
+                  <h4 style="font-size: 0.775rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.75rem;">
+                    Confidence Weight Matrix
+                  </h4>
+                  <div style="display: flex; flex-direction: column; gap: 0.65rem; font-size: 0.775rem;">
+                    <div>
+                      <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                        <span>Pattern Uniformity (35%)</span>
+                        <span id="sanitize-comp-pattern">0%</span>
+                      </div>
+                      <div style="height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+                        <div id="bar-sanitize-pattern" style="height: 100%; width: 0%; background: var(--blue-light);"></div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                        <span>Negative Carving (30%)</span>
+                        <span id="sanitize-comp-carving">0%</span>
+                      </div>
+                      <div style="height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+                        <div id="bar-sanitize-carving" style="height: 100%; width: 0%; background: var(--emerald);"></div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                        <span>Entropy Compliance (25%)</span>
+                        <span id="sanitize-comp-entropy">0%</span>
+                      </div>
+                      <div style="height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+                        <div id="bar-sanitize-entropy" style="height: 100%; width: 0%; background: var(--purple);"></div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div style="display: flex; justify-content: space-between; margin-bottom: 0.25rem;">
+                        <span>Metadata Nullification (10%)</span>
+                        <span id="sanitize-comp-metadata">0%</span>
+                      </div>
+                      <div style="height: 5px; background: rgba(255,255,255,0.06); border-radius: 3px; overflow: hidden;">
+                        <div id="bar-sanitize-metadata" style="height: 100%; width: 0%; background: var(--blue-light);"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             VIEW: VERIFICATION (INTEGRITY & REMANENCE)
+             ================================================================ -->
+        <section class="view-section" id="view-verification">
+          <div class="tool-grid-two-col">
+            <!-- Recovery Integrity Verifier -->
+            <div class="content-card">
+              <div class="content-card-header">
+                <h3 class="content-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                  </svg>
+                  Verify Recovered File Integrity
+                </h3>
+                <span class="type-pill recovery">AST / CHUNK CHECKS</span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="verify-recovery-target">Recovered File Path</label>
+                <input type="text" class="form-input code-font" id="verify-recovery-target" placeholder="e.g. data/recovered/carved_0001_512.png">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="verify-baseline-hash">Baseline SHA-256 Hash (Optional)</label>
+                <input type="text" class="form-input code-font" id="verify-baseline-hash" placeholder="Original cryptographic digest">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="verify-expected-size">Expected Size in Bytes (Optional)</label>
+                <input type="number" class="form-input code-font" id="verify-expected-size" placeholder="Expected length">
+              </div>
+
+              <button class="btn btn-primary btn-full" id="btn-run-recovery-verify">
+                Run Verification & Smoke Test
+              </button>
+
+              <div id="recovery-result-content" style="display: none; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-subtle);">
+                <div style="display: flex; align-items: center; justify-content: space-between;">
+                  <div style="display: flex; align-items: center; gap: 0.75rem;">
+                    <div class="kpi-ring-wrapper">
+                      <svg class="kpi-ring-svg">
+                        <circle class="kpi-ring-bg" cx="32" cy="32" r="26"/>
+                        <circle class="kpi-ring-fill blue" id="recovery-score-radial" cx="32" cy="32" r="26" stroke-dasharray="163" stroke-dashoffset="30"/>
+                      </svg>
+                      <div class="kpi-ring-text" id="recovery-score-text">80%</div>
+                    </div>
+                    <div>
+                      <div style="font-size: 0.725rem; color: var(--text-muted);">SCORE & VERDICT</div>
+                      <div class="type-pill recovery" id="recovery-verdict-badge">PROBABLE</div>
+                    </div>
+                  </div>
+                  <div style="font-size: 0.775rem; font-family: var(--font-mono); text-align: right;">
+                    <div>Magic: <strong id="recovery-magic-val" style="color: var(--emerald);">VALID</strong></div>
+                    <div>Structure: <strong id="recovery-struct-val" style="color: var(--emerald);">PASSED</strong></div>
+                    <div>Parser: <strong id="recovery-parser-val" style="color: var(--emerald);">PASSED</strong></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Sanitization Remanence Scanner -->
+            <div class="content-card">
+              <div class="content-card-header">
+                <h3 class="content-card-title">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <circle cx="11" cy="11" r="8"/>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                  </svg>
+                  Sanitization Remanence Scanner
+                </h3>
+                <span class="type-pill sanitization">BYTE AUDIT</span>
+              </div>
+
+              <div class="dropzone" id="remanence-dropzone">
+                <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                  <polyline points="17 8 12 3 7 8"/>
+                </svg>
+                <div class="dropzone-title">Upload File to Test for Remanence</div>
+                <div class="dropzone-hint">Drag & drop or click</div>
+                <input type="file" id="remanence-file-input" style="display: none;">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="remanence-target-path">Or File Path</label>
+                <input type="text" class="form-input code-font" id="remanence-target-path" placeholder="e.g. data/sandbox/evidence_badge.png">
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="remanence-expected-method">Expected Sanitization Standard</label>
+                <select class="form-select" id="remanence-expected-method">
+                  <option value="zero">Zero-Fill (0x00)</option>
+                  <option value="dod_5220_22_m">DoD 5220.22-M</option>
+                  <option value="random">CSPRNG Random / NIST Purge</option>
+                </select>
+              </div>
+
+              <button class="btn btn-secondary btn-full" id="btn-run-remanence-check">
+                Run Remanence Analysis
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- ================================================================
+             VIEW: EVIDENCE / TEST LAB SANDBOX
+             ================================================================ -->
+        <section class="view-section" id="view-evidence">
+          <div class="content-card">
+            <div class="content-card-header">
+              <h3 class="content-card-title">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M10 2v7.31L4.69 17.5A2 2 0 0 0 6.42 20h11.16a2 2 0 0 0 1.73-2.5L14 9.31V2"/>
+                  <line x1="8.5" y1="2" x2="15.5" y2="2"/>
+                </svg>
+                Forensic Evidence Sandbox Registry
+              </h3>
+              <button class="btn btn-primary btn-sm" id="btn-generate-sandbox-samples">
+                ⚡ Generate Sample Forensic Evidence
+              </button>
+            </div>
+            <p style="font-size: 0.825rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+              Manage raw disk dumps, test evidence samples, and target binaries.
+            </p>
+
+            <table class="cases-table">
+              <thead>
+                <tr>
+                  <th>File Name</th>
+                  <th>Path</th>
+                  <th>Size</th>
+                  <th>SHA-256 Digest</th>
+                  <th>Quick Actions</th>
+                </tr>
+              </thead>
+              <tbody id="sandbox-files-tbody">
+                <tr>
+                  <td colspan="5" style="text-align: center; color: var(--text-muted); padding: 2rem;">
+                    Loading sandbox evidence...
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+    <!-- ====================================================================
+         COLUMN 3: RIGHT INTELLIGENCE COLUMN
+         ==================================================================== -->
+    <aside class="right-panel">
+      <!-- Storage Overview Card -->
+      <div class="right-panel-card">
+        <div class="right-card-header">
+          <h4 class="right-card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+            Storage Overview
+          </h4>
+        </div>
+
+        <div class="storage-donut-wrapper">
+          <div class="donut-svg-box">
+            <svg class="donut-svg">
+              <circle class="donut-bg" cx="54" cy="54" r="45"/>
+              <circle class="donut-fill" cx="54" cy="54" r="45"/>
+            </svg>
+            <div class="donut-center-text">
+              <div class="donut-val">128 GB</div>
+              <div class="donut-lbl">Total</div>
+            </div>
+          </div>
+
+          <div class="donut-legend">
+            <div class="legend-item">
+              <span class="legend-dot purple"></span>
+              <div class="legend-text">
+                <div><strong>Used</strong></div>
+                <div style="color: var(--text-muted); font-size: 0.7rem;">54 GB (42%)</div>
+              </div>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot slate"></span>
+              <div class="legend-text">
+                <div><strong>Available</strong></div>
+                <div style="color: var(--text-muted); font-size: 0.7rem;">74 GB (58%)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recovered Files by Type -->
+      <div class="right-panel-card">
+        <div class="right-card-header">
+          <h4 class="right-card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+              <line x1="3" y1="9" x2="21" y2="9"/>
+              <line x1="9" y1="21" x2="9" y2="9"/>
+            </svg>
+            Recovered Files by Type
+          </h4>
+          <a class="view-all-link" style="font-size: 0.75rem;">View All &rarr;</a>
+        </div>
+
+        <div class="file-types-list">
+          <div class="file-type-row">
+            <div class="file-type-info">
+              <div class="file-type-left">
+                <div class="file-type-icon blue">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+                </div>
+                <span>Documents</span>
+              </div>
+              <span class="file-type-count">1,024</span>
+            </div>
+            <div class="file-type-bar"><div class="file-type-bar-fill blue"></div></div>
+          </div>
+
+          <div class="file-type-row">
+            <div class="file-type-info">
+              <div class="file-type-left">
+                <div class="file-type-icon pink">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+                </div>
+                <span>Images</span>
+              </div>
+              <span class="file-type-count">856</span>
+            </div>
+            <div class="file-type-bar"><div class="file-type-bar-fill pink"></div></div>
+          </div>
+
+          <div class="file-type-row">
+            <div class="file-type-info">
+              <div class="file-type-left">
+                <div class="file-type-icon purple">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                </div>
+                <span>Videos</span>
+              </div>
+              <span class="file-type-count">624</span>
+            </div>
+            <div class="file-type-bar"><div class="file-type-bar-fill purple"></div></div>
+          </div>
+
+          <div class="file-type-row">
+            <div class="file-type-info">
+              <div class="file-type-left">
+                <div class="file-type-icon orange">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V5l12-2v13"/></svg>
+                </div>
+                <span>Audio</span>
+              </div>
+              <span class="file-type-count">315</span>
+            </div>
+            <div class="file-type-bar"><div class="file-type-bar-fill orange"></div></div>
+          </div>
+
+          <div class="file-type-row">
+            <div class="file-type-info">
+              <div class="file-type-left">
+                <div class="file-type-icon green">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="21 8 21 21 3 21 3 8"/></svg>
+                </div>
+                <span>Archives</span>
+              </div>
+              <span class="file-type-count">248</span>
+            </div>
+            <div class="file-type-bar"><div class="file-type-bar-fill green"></div></div>
+          </div>
+
+          <div class="file-type-row">
+            <div class="file-type-info">
+              <div class="file-type-left">
+                <div class="file-type-icon slate">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/></svg>
+                </div>
+                <span>Others</span>
+              </div>
+              <span class="file-type-count">132</span>
+            </div>
+            <div class="file-type-bar"><div class="file-type-bar-fill slate"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- System Health Card -->
+      <div class="right-panel-card">
+        <div class="right-card-header">
+          <h4 class="right-card-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+            System Health
+          </h4>
+        </div>
+
+        <div class="health-item">
+          <div class="health-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+            <span>All Modules Operational</span>
+          </div>
+          <span class="health-status-tag">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+            Healthy
+          </span>
+        </div>
+
+        <div class="health-item">
+          <div class="health-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/></svg>
+            <span>Disk Space</span>
+          </div>
+          <span class="health-status-tag text-dim">74 GB Free</span>
+        </div>
+
+        <div class="health-item">
+          <div class="health-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span>Last Scan</span>
+          </div>
+          <span class="health-status-tag text-dim">08 Sep 2026, 11:24 AM</span>
+        </div>
+
+        <div class="health-item">
+          <div class="health-left">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+            <span>Audit Log</span>
+          </div>
+          <span class="health-status-tag text-dim">Active</span>
+        </div>
+
+        <button class="btn-generate-report" id="btn-generate-report">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          Generate Forensic Report
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Safety Overwrite Confirmation Modal -->
+  <div class="modal-overlay" id="sanitization-confirm-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+          <line x1="12" y1="9" x2="12" y2="13"/>
+          <line x1="12" y1="17" x2="12.01" y2="17"/>
+        </svg>
+        <h3 class="modal-title">Confirm Irreversible Overwrite</h3>
+      </div>
+      <div class="modal-body">
+        <p>You are about to perform a <strong>destructive forensic wipe</strong> on:</p>
+        <p style="font-family: var(--font-mono); color: var(--blue-light); margin: 0.75rem 0; word-break: break-all;" id="modal-target-path-display"></p>
+        <p>Method: <strong id="modal-method-display" style="color: var(--amber);"></strong></p>
+        <p style="font-size: 0.775rem; color: var(--coral-red); margin-top: 0.75rem;">
+          ⚠️ This operation writes raw zeroes/random bytes directly to the file payload. The original data will be completely unrecoverable.
+        </p>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="btn-cancel-modal">Cancel</button>
+        <button class="btn btn-danger" id="btn-confirm-wipe">Confirm & Overwrite</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Case Modal -->
+  <div class="modal-overlay" id="new-case-modal">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h3 class="modal-title">Initialize New Forensic Case</h3>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label class="form-label">Case Identifier</label>
+          <input type="text" class="form-input" id="new-case-id" value="Case_Investigation_2026_09">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Operation Type</label>
+          <select class="form-select" id="new-case-type">
+            <option value="view-recovery">Forensic File Carving & Recovery</option>
+            <option value="view-sanitization">Secure Data Sanitization & Shredding</option>
+            <option value="view-verification">Independent Verification & Remanence Scan</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Lead Investigator</label>
+          <input type="text" class="form-input" value="Atharva Kumkar" readonly>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="btn-cancel-new-case">Cancel</button>
+        <button class="btn btn-primary" id="btn-confirm-new-case">Launch Case</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container"></div>
+
+  <!-- Scripts -->
+  <script src="/js/common.js"></script>
+  <script src="/js/sanitization.js"></script>
+  <script src="/js/recovery.js"></script>
+  <script src="/js/algorithms.js"></script>
+</body>
+</html>
